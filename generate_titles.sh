@@ -1,60 +1,108 @@
-#!/bin/bash
-# 1. 1767597493699
-echo "The Golden Reflection of Dedication" > title/1767597493699.en.txt
-echo "黄金の輝きと無言の祈り" > title/1767597493699.ja.txt
+mkdir -p title
 
-# 2. 1767597499904
-echo "Whispers in the Candlelight" > title/1767597499904.en.txt
-echo "灯火が語る手仕事の記憶" > title/1767597499904.ja.txt
+cat << 'INNER_EOF' > title/1767649073675.en.txt
+Whispers of Golden Melancholy
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649073675.ja.txt
+黄金色の憂鬱が囁くとき
+INNER_EOF
 
-# 3. 1767597507445
-echo "The Golden Heart of Invention" > title/1767597507445.en.txt
-echo "創造の鼓動、黄金の心臓" > title/1767597507445.ja.txt
+cat << 'INNER_EOF' > title/1767649076793.en.txt
+A Symphony of Petals and Dreams
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649076793.ja.txt
+花びらと夢が織りなす交響曲
+INNER_EOF
 
-# 4. 1767597511862
-echo "Symphony of Scattered Light" > title/1767597511862.en.txt
-echo "光の戯れ、色彩の交響曲" > title/1767597511862.ja.txt
+cat << 'INNER_EOF' > title/1767649080005.en.txt
+Dancing Lights in the Summer Breeze
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649080005.ja.txt
+夏風に舞う無数の灯火
+INNER_EOF
 
-# 5. 1767597524357
-echo "A Stitch in the Archway's Shadow" > title/1767597524357.en.txt
-echo "アーチの陰で刻む革の魂" > title/1767597524357.ja.txt
+cat << 'INNER_EOF' > title/1767649083357.en.txt
+Heartbeats of a Sun-Kissed Village
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649083357.ja.txt
+陽だまりの村が刻む鼓動
+INNER_EOF
 
-# 6. 1767606329443
-echo "Echoes of the Hammer in the Dark" > title/1767606329443.en.txt
-echo "暗闇に響く槌音の軌跡" > title/1767606329443.ja.txt
+cat << 'INNER_EOF' > title/1767649086421.en.txt
+Serenade on the Shimmering Waters
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649086421.ja.txt
+煌めく水面が奏でる小夜曲
+INNER_EOF
 
-# 7. 1767606336386
-echo "The Slumbering Giant's Gold" > title/1767606336386.en.txt
-echo "眠れる巨人の黄金の心" > title/1767606336386.ja.txt
+cat << 'INNER_EOF' > title/1767649090874.en.txt
+Silent Echoes in the Velvet Snow
+INNER_EOF
+cat << 'INNER_EOF' > title/1767649090874.ja.txt
+ベルベットの雪に響く静寂のこだま
+INNER_EOF
 
-# 8. 1767606342428
-echo "Tension in the Heart of Iron" > title/1767606342428.en.txt
-echo "鉄の鼓動、絡み合う力の詩" > title/1767606342428.ja.txt
+cat << 'INNER_EOF' > title/1767652220799.en.txt
+Fragments of a Forgotten Dream
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652220799.ja.txt
+忘却の夢からこぼれ落ちた欠片
+INNER_EOF
 
-# 9. 1767606348305
-echo "Orchestrating Time in the Shadows" > title/1767606348305.en.txt
-echo "影の中で時を紡ぐ指先" > title/1767606348305.ja.txt
+cat << 'INNER_EOF' > title/1767652226525.en.txt
+Echoes of Eternity in Her Eyes
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652226525.ja.txt
+彼女の瞳に宿る永遠の残響
+INNER_EOF
 
-# 10. 1767606353830
-echo "The Wooden Mountain Approaches" > title/1767606353830.en.txt
-echo "迫り来る木の巨影と静かなる決意" > title/1767606353830.ja.txt
+cat << 'INNER_EOF' > title/1767652245638.en.txt
+The Silent Emperor of the Undergrowth
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652245638.ja.txt
+下草に君臨する寡黙な皇帝
+INNER_EOF
 
-# 11. 1767606358794
-echo "The Warmth of a Single Spark" > title/1767606358794.en.txt
-echo "一筋の炎が灯す職人の祈り" > title/1767606358794.ja.txt
+cat << 'INNER_EOF' > title/1767652254918.en.txt
+Embrace Until the Stars Fall
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652254918.ja.txt
+星が降るまでの永遠の抱擁
+INNER_EOF
 
-# 12. 1767606368078
-echo "Visions Through the Brass Eye" > title/1767606368078.en.txt
-echo "真鍮の瞳が捉えた真理の光" > title/1767606368078.ja.txt
+cat << 'INNER_EOF' > title/1767652259948.en.txt
+A Gaze Woven with Golden Tears
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652259948.ja.txt
+黄金の涙で紡がれた眼差し
+INNER_EOF
 
-# 13. 1767606372385
-echo "Sorting the Silver Stars" > title/1767606372385.en.txt
-echo "銀の星屑を拾い集める夜" > title/1767606372385.ja.txt
+cat << 'INNER_EOF' > title/1767652266891.en.txt
+Footsteps Carved in the Twilight Frost
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652266891.ja.txt
+黄昏の霜に刻まれた孤独な足跡
+INNER_EOF
 
-# 14. 1767606992267
-echo "The Rhythm of the Rainbow" > title/1767606992267.en.txt
-echo "躍動する光の旋律" > title/1767606992267.ja.txt
+cat << 'INNER_EOF' > title/1767652272501.en.txt
+A Sacred Glow in the Heart of Winter
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652272501.ja.txt
+冬の心臓で脈打つ神聖なる灯り
+INNER_EOF
 
-# 15. 1767607032584
-echo "Gazing at the Eternal Flow" > title/1767607032584.en.txt
-echo "永遠の流れを見守る二人" > title/1767607032584.ja.txt
+cat << 'INNER_EOF' > title/1767652277832.en.txt
+Tears of Light in the Emerald Sanctuary
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652277832.ja.txt
+翠緑の聖域にこぼれる光の涙
+INNER_EOF
+
+cat << 'INNER_EOF' > title/1767652287584.en.txt
+Golden Sighs of the Drowning City
+INNER_EOF
+cat << 'INNER_EOF' > title/1767652287584.ja.txt
+沈みゆく街が零した黄金の溜息
+INNER_EOF
+
+echo "All 30 title files generated successfully."
