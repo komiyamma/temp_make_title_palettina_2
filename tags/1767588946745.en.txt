@@ -1,0 +1,30 @@
+﻿abstract
+geometric
+painting
+pipe
+cylinder
+metal
+chrome
+reflective
+transparent
+block
+prism
+glass
+acrylic
+industrial
+architectural
+blue
+red
+yellow
+green
+vibrant
+colorful
+light
+reflection
+composition
+modern art
+still life
+oil painting
+artistic
+texture
+shine
