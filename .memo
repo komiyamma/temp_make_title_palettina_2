@@ -1,5 +1,1 @@
-Updated titles
-2024-XX-XX:
-- list.txt に記載されている各IDについて、tags, critique, picture の情報を基に英語タイトルと日本語タイトルを作成。
-- 作成したタイトルはそれぞれ title/<ID>.en.txt と title/<ID>.ja.txt に出力。
-- 計15のIDに対して、それぞれ2つずつ合計30のファイルを生成したことを確認済み。
+2024-XX-XX: `list.txt` に記載された15件のIDすべてについて、それぞれに対応する画像（`picture/<ID>.png`）、タグ（`tags/<ID>.ja.txt`）、および講評（`critique/<ID>.ja.txt`）を読み込み、内容を反映したタイトルを考案しました。考案したタイトルは、英語と日本語でそれぞれ `title/<ID>.en.txt` および `title/<ID>.ja.txt` として保存しました。テストや検証は実行可能なテストスートがないため割愛し、bashスクリプトで全ファイルの生成を手動確認しました。
