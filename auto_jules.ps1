@@ -47,6 +47,13 @@ function Run-JulesForRange {
         return $false
     }
 
+    Write-Host "🛠️ build_common_prefix_list.py を実行します..." -ForegroundColor Cyan
+    python build_common_prefix_list.py
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ build_common_prefix_list.py の実行に失敗しました。"
+        return $false
+    }
+
     $pendingChanges = git status --porcelain
     if ($pendingChanges) {
         Write-Host "📤 ローカル変更をコミットしてプッシュします..." -ForegroundColor Cyan
