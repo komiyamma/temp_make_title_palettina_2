@@ -1,61 +1,60 @@
 #!/bin/bash
+# 1. 1767597493699
+echo "The Golden Reflection of Dedication" > title/1767597493699.en.txt
+echo "黄金の輝きと無言の祈り" > title/1767597493699.ja.txt
 
-# ID: 1767586735186
-echo "Sanctuary of Sunlight and Bloom" > title/1767586735186.en.txt
-echo "陽だまりの温室、あるいは静かなる命の楽園" > title/1767586735186.ja.txt
+# 2. 1767597499904
+echo "Whispers in the Candlelight" > title/1767597499904.en.txt
+echo "灯火が語る手仕事の記憶" > title/1767597499904.ja.txt
 
-# ID: 1767586741146
-echo "A Gathering of Wild Blooms by the Stream" > title/1767586741146.en.txt
-echo "密やかなる森の泉、手折られし野花" > title/1767586741146.ja.txt
+# 3. 1767597507445
+echo "The Golden Heart of Invention" > title/1767597507445.en.txt
+echo "創造の鼓動、黄金の心臓" > title/1767597507445.ja.txt
 
-# ID: 1767586746396
-echo "Echoes of Golden Splendor by the Azure Sea" > title/1767586746396.en.txt
-echo "黄金の微睡みと紺碧の海鳴り" > title/1767586746396.ja.txt
+# 4. 1767597511862
+echo "Symphony of Scattered Light" > title/1767597511862.en.txt
+echo "光の戯れ、色彩の交響曲" > title/1767597511862.ja.txt
 
-# ID: 1767586762265
-echo "Pulse of the Exotic Loggia" > title/1767586762265.en.txt
-echo "異教の光溢れる回廊での饗宴" > title/1767586762265.ja.txt
+# 5. 1767597524357
+echo "A Stitch in the Archway's Shadow" > title/1767597524357.en.txt
+echo "アーチの陰で刻む革の魂" > title/1767597524357.ja.txt
 
-# ID: 1767586775248
-echo "The Silent Dialogue of Creation" > title/1767586775248.en.txt
-echo "静寂なるアトリエ、光と色の対話" > title/1767586775248.ja.txt
+# 6. 1767606329443
+echo "Echoes of the Hammer in the Dark" > title/1767606329443.en.txt
+echo "暗闇に響く槌音の軌跡" > title/1767606329443.ja.txt
 
-# ID: 1767586780548
-echo "Roar of the Golden Cascade" > title/1767586780548.en.txt
-echo "黄金の奔流と岩の記憶" > title/1767586780548.ja.txt
+# 7. 1767606336386
+echo "The Slumbering Giant's Gold" > title/1767606336386.en.txt
+echo "眠れる巨人の黄金の心" > title/1767606336386.ja.txt
 
-# ID: 1767586786906
-echo "Whispers of the Sunlit Villa" > title/1767586786906.en.txt
-echo "陽光祝ぐ南欧のヴィラと噴水の調べ" > title/1767586786906.ja.txt
+# 8. 1767606342428
+echo "Tension in the Heart of Iron" > title/1767606342428.en.txt
+echo "鉄の鼓動、絡み合う力の詩" > title/1767606342428.ja.txt
 
-# ID: 1767586792778
-echo "Majesty of the Untamed Valley" > title/1767586792778.en.txt
-echo "神の光が降り注ぐ悠久の谷" > title/1767586792778.ja.txt
+# 9. 1767606348305
+echo "Orchestrating Time in the Shadows" > title/1767606348305.en.txt
+echo "影の中で時を紡ぐ指先" > title/1767606348305.ja.txt
 
-# ID: 1767586798474
-echo "Eternal Clash of Sea and Stone" > title/1767586798474.en.txt
-echo "荒磯に砕け散る永遠の波濤" > title/1767586798474.ja.txt
+# 10. 1767606353830
+echo "The Wooden Mountain Approaches" > title/1767606353830.en.txt
+echo "迫り来る木の巨影と静かなる決意" > title/1767606353830.ja.txt
 
-# ID: 1767586810983
-echo "Crucible of the Iron Soul" > title/1767586810983.en.txt
-echo "鉄の魂を打ち据える焔の工房" > title/1767586810983.ja.txt
+# 11. 1767606358794
+echo "The Warmth of a Single Spark" > title/1767606358794.en.txt
+echo "一筋の炎が灯す職人の祈り" > title/1767606358794.ja.txt
 
-# ID: 1767586815939
-echo "The Armorer's Fiery Sanctum" > title/1767586815939.en.txt
-echo "鋼の刃が眠る歴史の武器庫と揺らめく焔" > title/1767586815939.ja.txt
+# 12. 1767606368078
+echo "Visions Through the Brass Eye" > title/1767606368078.en.txt
+echo "真鍮の瞳が捉えた真理の光" > title/1767606368078.ja.txt
 
-# ID: 1767586824008
-echo "Shadows of Intellectual Pursuit" > title/1767586824008.en.txt
-echo "蝋燭が照らし出す叡智の痕跡" > title/1767586824008.ja.txt
+# 13. 1767606372385
+echo "Sorting the Silver Stars" > title/1767606372385.en.txt
+echo "銀の星屑を拾い集める夜" > title/1767606372385.ja.txt
 
-# ID: 1767586829113
-echo "Bathed in the Light of Creation" > title/1767586829113.en.txt
-echo "陽だまりのまどろみと創造の息吹" > title/1767586829113.ja.txt
+# 14. 1767606992267
+echo "The Rhythm of the Rainbow" > title/1767606992267.en.txt
+echo "躍動する光の旋律" > title/1767606992267.ja.txt
 
-# ID: 1767586835325
-echo "Voyage Beyond the Scholar's Desk" > title/1767586835325.en.txt
-echo "黄金の光に包まれた真理への航海図" > title/1767586835325.ja.txt
-
-# ID: 1767586848950
-echo "Harmony Within the Artistic Chaos" > title/1767586848950.en.txt
-echo "混沌から生まれる色彩の調和、私的アトリエ" > title/1767586848950.ja.txt
+# 15. 1767607032584
+echo "Gazing at the Eternal Flow" > title/1767607032584.en.txt
+echo "永遠の流れを見守る二人" > title/1767607032584.ja.txt
