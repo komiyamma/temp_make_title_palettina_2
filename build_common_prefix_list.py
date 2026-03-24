@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import re
+import shutil
 from pathlib import Path
 
 
 LEADING_NUMBER_PATTERN = re.compile(r"^(\d+)")
-TITLE_DIRECTORIES = ("title", "title_back")
-DELETE_TARGET_DIRECTORIES = ("tags", "critique")
+TITLE_DIRECTORY = "title"
+RESOURCE_DIRECTORIES = ("tags", "tags_back", "critique", "critique_back", "picture", "picture_back")
 BACK_TARGET_DIRECTORIES = ("tags_back", "critique_back", "picture_back")
 MOVE_DIRECTORY_PAIRS = (
     ("tags_back", "tags"),
@@ -56,19 +57,35 @@ def collect_files_by_leading_number(directory: Path) -> dict[int, list[Path]]:
     return files_by_number
 
 
-def collect_base_names(directory: Path) -> set[str]:
+def collect_completed_title_base_names(directory: Path) -> set[str]:
     if not directory.is_dir():
         return set()
 
-    return {extract_base_name(path) for path in directory.iterdir() if path.is_file()}
+    languages_by_base_name: dict[str, set[str]] = {}
+    for path in directory.iterdir():
+        if not path.is_file():
+            continue
+
+        parts = path.name.split(".")
+        if len(parts) < 3 or parts[-1] != "txt":
+            continue
+
+        language = parts[-2]
+        if language not in {"en", "ja"}:
+            continue
+
+        base_name = parts[0]
+        languages_by_base_name.setdefault(base_name, set()).add(language)
+
+    return {
+        base_name
+        for base_name, languages in languages_by_base_name.items()
+        if {"en", "ja"}.issubset(languages)
+    }
 
 
-def delete_matching_files(source_directories: tuple[Path, ...], target_directories: tuple[Path, ...]) -> int:
-    source_base_names: set[str] = set()
-    for directory in source_directories:
-        source_base_names.update(collect_base_names(directory))
-
-    if not source_base_names:
+def delete_matching_files(base_names: set[str], target_directories: tuple[Path, ...]) -> int:
+    if not base_names:
         return 0
 
     deleted_count = 0
@@ -80,7 +97,7 @@ def delete_matching_files(source_directories: tuple[Path, ...], target_directori
             if not path.is_file():
                 continue
 
-            if extract_base_name(path) not in source_base_names:
+            if extract_base_name(path) not in base_names:
                 continue
 
             path.unlink()
@@ -89,12 +106,11 @@ def delete_matching_files(source_directories: tuple[Path, ...], target_directori
     return deleted_count
 
 
-def move_matching_files(root: Path, numbers_to_move: list[int]) -> int:
-    if not numbers_to_move:
+def copy_matching_files(root: Path, numbers_to_copy: list[int]) -> int:
+    if not numbers_to_copy:
         return 0
 
-    move_count = 0
-    target_numbers = set(numbers_to_move)
+    copy_count = 0
     for source_directory_name, destination_directory_name in MOVE_DIRECTORY_PAIRS:
         source_directory = root / source_directory_name
         if not source_directory.is_dir():
@@ -104,23 +120,21 @@ def move_matching_files(root: Path, numbers_to_move: list[int]) -> int:
         destination_directory.mkdir(parents=True, exist_ok=True)
 
         files_by_number = collect_files_by_leading_number(source_directory)
-        for number in numbers_to_move:
+        for number in numbers_to_copy:
             for source_path in files_by_number.get(number, []):
-                if number not in target_numbers:
-                    continue
-
                 destination_path = destination_directory / source_path.name
-                source_path.replace(destination_path)
-                move_count += 1
+                shutil.copy2(source_path, destination_path)
+                copy_count += 1
 
-    return move_count
+    return copy_count
 
 
 def main() -> None:
     root = Path(__file__).resolve().parent
+    completed_title_base_names = collect_completed_title_base_names(root / TITLE_DIRECTORY)
     deleted_count = delete_matching_files(
-        tuple(root / directory for directory in TITLE_DIRECTORIES),
-        tuple(root / directory for directory in DELETE_TARGET_DIRECTORIES),
+        completed_title_base_names,
+        tuple(root / directory for directory in RESOURCE_DIRECTORIES),
     )
 
     number_sets = [extract_leading_numbers(root / directory) for directory in BACK_TARGET_DIRECTORIES]
@@ -132,10 +146,10 @@ def main() -> None:
         output_text += "\n"
 
     output_path.write_text(output_text, encoding="utf-8")
-    moved_count = move_matching_files(root, common_numbers)
+    copied_count = copy_matching_files(root, common_numbers)
 
-    print(f"Deleted {deleted_count} files from tags/critique")
-    print(f"Moved {moved_count} files from *_back directories")
+    print(f"Deleted {deleted_count} resource files for completed titles")
+    print(f"Copied {copied_count} files from *_back directories")
     print(f"Wrote {len(common_numbers)} entries to {output_path}")
 
 
