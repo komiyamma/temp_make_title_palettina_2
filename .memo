@@ -1,1 +1,5 @@
 Updated titles
+2024-XX-XX:
+- list.txt に記載されている各IDについて、tags, critique, picture の情報を基に英語タイトルと日本語タイトルを作成。
+- 作成したタイトルはそれぞれ title/<ID>.en.txt と title/<ID>.ja.txt に出力。
+- 計15のIDに対して、それぞれ2つずつ合計30のファイルを生成したことを確認済み。
