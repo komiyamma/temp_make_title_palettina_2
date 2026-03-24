@@ -129,6 +129,43 @@ def copy_matching_files(root: Path, numbers_to_copy: list[int]) -> int:
     return copy_count
 
 
+def move_old_title_files(root: Path) -> int:
+    title_dir = root / TITLE_DIRECTORY
+    move_title_config = root / "move_title.txt"
+
+    if not title_dir.is_dir() or not move_title_config.is_file():
+        return 0
+
+    destination_path_str = move_title_config.read_text(encoding="utf-8").strip()
+    if not destination_path_str:
+        return 0
+
+    destination_dir = Path(destination_path_str)
+    destination_dir.mkdir(parents=True, exist_ok=True)
+
+    files = [p for p in title_dir.iterdir() if p.is_file()]
+    if len(files) < 100:
+        return 0
+
+    # Sort files by modification time descending (newest first)
+    files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+
+    files_to_move = files[60:]
+    move_count = 0
+    for file_path in files_to_move:
+        dest_file_path = destination_dir / file_path.name
+        try:
+            shutil.move(str(file_path), str(dest_file_path))
+            move_count += 1
+        except Exception as e:
+            print(f"Failed to move {file_path}: {e}")
+
+    if move_count > 0:
+        print(f"Moved {move_count} old title files to {destination_dir}")
+
+    return move_count
+
+
 def main() -> None:
     root = Path(__file__).resolve().parent
     completed_title_base_names = collect_completed_title_base_names(root / TITLE_DIRECTORY)
@@ -151,6 +188,9 @@ def main() -> None:
     print(f"Deleted {deleted_count} resource files for completed titles")
     print(f"Copied {copied_count} files from *_back directories")
     print(f"Wrote {len(common_numbers)} entries to {output_path}")
+
+    # Process old title files
+    move_old_title_files(root)
 
 
 if __name__ == "__main__":
