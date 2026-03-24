@@ -47,6 +47,31 @@ function Run-JulesForRange {
         return $false
     }
 
+    $pendingChanges = git status --porcelain
+    if ($pendingChanges) {
+        Write-Host "📤 ローカル変更をコミットしてプッシュします..." -ForegroundColor Cyan
+        git add -A
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "❌ git add に失敗しました。"
+            return $false
+        }
+
+        git commit -m "addition"
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "❌ git commit に失敗しました。"
+            return $false
+        }
+
+        git push
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "❌ git push に失敗しました。"
+            return $false
+        }
+    }
+    else {
+        Write-Host "ℹ️ コミット対象のローカル変更はありません。" -ForegroundColor Gray
+    }
+
     $startLine = [int]$Matches[1]
     $endLine = [int]$Matches[2]
     if ($startLine -gt $endLine) { 
@@ -176,7 +201,7 @@ function Run-JulesForRange {
 
 # --- メインロジック（分岐なしで20回反復） ---
 $i = 1
-for ($count = 1; $count -le 20; $count++) {
+for ($count = 1; $count -le 50; $count++) {
     $r = "$i-$($i + 5)"
     $success = Run-JulesForRange -targetRange $r
     if ($success) {
