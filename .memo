@@ -1,1 +1,6 @@
-Generated English and Japanese emotional titles for all IDs listed in list.txt and saved them in the title directory.
+# 작업 메모 (Memo)
+
+- `list.txt` に記載されている全IDを対象に、英語タイトルと日本語タイトルを生成しました。
+- 各IDごとに `tags` と `critique` をもとに、感情豊かで主観的なタイトルを生成し、`title/<ID>.en.txt` および `title/<ID>.ja.txt` に保存しました。
+- ファイルが空でないこと、必要なファイルがすべて生成されていることを確認済みです。
+- タスクは完了しました。
