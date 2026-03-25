@@ -9,7 +9,7 @@ Generate subjective and emotional titles (in both English and Japanese) for 15 a
 3. Wrote a python script `generate.py` that dynamically writes custom, hand-crafted subjective/emotional titles for each of the 15 IDs into the `title/` directory.
 4. Executed `generate.py` which successfully generated 30 files in total (15 English, 15 Japanese).
 5. Verified the files were correctly created and are not empty using `ls -l` and `wc -c`.
-6. Generated this `.memo` file as required before publishing a pull request.
+6. Updated this `.memo` file as required before publishing a pull request.
 
 ## Result
 All 30 required title files were successfully created. The titles reflect the subjective, emotional, and captivating nature requested by the system instructions.
