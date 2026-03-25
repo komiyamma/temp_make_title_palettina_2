@@ -1,4 +1,5 @@
-# タイトル作成作業完了のメモ
-
-`list.txt` に記載されている全15個のIDについて、`tags` および `critique` の内容に基づいて「主観的で心に響くタイトル」を生成し、`title` ディレクトリに英語（`<ID>.en.txt`）および日本語（`<ID>.ja.txt`）の形式で保存しました。
-作業は中断することなく一連の流れで完遂しており、欠落がないことを確認済みです。
+- Generated `.en.txt` and `.ja.txt` title files for 15 IDs listed in `list.txt`.
+- Created subjective, emotionally resonant titles based on tags and critiques.
+- Saved generated titles in the `title/` directory.
+- Avoided editing `gemini_command.md`.
+- Removed intermediate files and restored untouched files based on code review feedback.
