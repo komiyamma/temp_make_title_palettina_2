@@ -1,0 +1,30 @@
+﻿landscape
+town
+village
+church
+spire
+tower
+sunset
+golden hour
+mountains
+river
+bay
+sea
+water
+boats
+sailboats
+rowboats
+people
+pier
+stone dock
+reflection
+trees
+forest
+sky
+clouds
+dusk
+evening
+painting
+art
+oil painting
+romanticism
