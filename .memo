@@ -1,2 +1,1 @@
-list.txtに記載された15件のIDについて、対応するtags、critiqueファイル（英語および日本語）の情報を元に、主観的で感情的な英語タイトルと日本語タイトルを生成しました。
-各タイトルは `title/<ID>.en.txt` および `title/<ID>.ja.txt` としてそれぞれ保存し、すべての一時ファイルは削除してクリーンアップを完了しました。
+Added english and japanese titles for artworks specified in list.txt
