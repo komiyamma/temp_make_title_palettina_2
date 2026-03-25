@@ -1,0 +1,30 @@
+﻿painting
+oil painting
+impressionism
+landscape
+lake
+mountains
+village
+town
+tower
+church
+houses
+boats
+sailboats
+rowboat
+couple
+man
+woman
+red dress
+shore
+pathway
+trees
+foliage
+water
+reflection
+sky
+clouds
+summer
+peaceful
+romantic
+idyllic

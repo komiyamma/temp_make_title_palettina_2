@@ -1,0 +1,30 @@
+﻿painting
+oil painting
+realism
+landscape
+mountains
+hills
+valley
+river
+water
+bridge
+stone bridge
+village
+town
+church
+tower
+architecture
+sky
+clouds
+storm
+sunlight
+crepuscular rays
+dramatic
+majestic
+scenery
+nature
+rural
+historical
+travel
+scenic
+moody
