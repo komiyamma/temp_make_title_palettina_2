@@ -1,1 +1,3 @@
 Tasks completed based on list.txt. Generating titles to title/ directory.
+Created subjective and emotional English and Japanese titles for the 15 IDs listed in list.txt based on their tags and critiques.
+Files successfully output to title/<ID>.en.txt and title/<ID>.ja.txt.
