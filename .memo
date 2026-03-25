@@ -1,28 +1,12 @@
-# 作業完了メモ
+# Task Completion Memo
 
-## 実施内容
-- `list.txt` に記載された新規15件の画像IDに対して処理を実行しました。
-- 各IDの `tags/` と `critique/` の内容を読み取り、`picture/` にある実際の画像内容と照らし合わせました。
-- 指示に従い、客観的な説明ではなく「主観的・感情的・魅惑的」なタイトルを日本語と英語で生成しました。
-- 生成したタイトルは `title/` ディレクトリに `<ID>.ja.txt` および `<ID>.en.txt` としてそれぞれ保存しました。
-- 最終チェックスクリプトを実行し、`list.txt` に記載された全番号について、対応する英語タイトルファイル・日本語タイトルファイルがすべて存在していることを確認しました。
+## Task Summary
+Generated highly subjective and emotional English and Japanese title files for the 15 artwork IDs specified in `list.txt`.
 
-## 今回の対象ID (全15件完了)
-- 1767800765767
-- 1767800772254
-- 1767800777645
-- 1767800782443
-- 1767800787747
-- 1767800792203
-- 1767800796670
-- 1767807746981
-- 1767807752540
-- 1767807757892
-- 1767807763322
-- 1767807770648
-- 1767807775817
-- 1767807780500
-- 1767807784793
-
-## 特記事項
-- `gemini_command.md` の要求事項を全て満たし、質問等の余分な対話を行わず自律的に完遂しました。
+## Details
+- Kept strictly to the repository instructions (`gemini_command.md`). No questions asked, just executed the task.
+- Evaluated tags, critiques, and `picture/` images as truth sources.
+- Ignored standard descriptive text for titles in favor of engaging and captivating phrasing (e.g. "Whispers of the Majestic Peak", "黄金の塵に紡がれた足跡").
+- Output generated exactly 30 files in total (15 EN, 15 JA) into the `title/` directory for the listed target IDs.
+- Testing: No automated test suite exists in this repository. Validated manually via shell output.
+- Finalized for pull request and review.
