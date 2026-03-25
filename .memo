@@ -1,6 +1,3 @@
-- Completed the task of generating highly subjective and emotional English and Japanese titles based on the content of the `tags` and `critique` files.
-- Generated 2 title files (`.en.txt` and `.ja.txt`) for each of the 15 IDs listed in `list.txt`.
-- Saved all generated 30 title files to the `title` directory.
-- Used a script to dynamically generate these titles to perfectly map them to IDs, avoiding hardcoding or arbitrary placement.
-- Verified their existence perfectly per the `list.txt` entries.
-- All rules and restrictions mentioned in `gemini_command.md` were strictly followed.Generated additional titles for 15 IDs from list.txt and saved them to title/ directory as per gemini_command.md.
+Generated subjective English and Japanese titles based on image metadata for the IDs listed in list.txt.
+Ensured all required files were generated correctly in the title/ directory.
+Cleaned up temporary scripts.
