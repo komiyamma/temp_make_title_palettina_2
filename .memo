@@ -1,3 +1,7 @@
 Generated subjective English and Japanese titles based on image metadata for the IDs listed in list.txt.
 Ensured all required files were generated correctly in the title/ directory.
 Cleaned up temporary scripts.
+
+Generated subjective and emotional English and Japanese titles for the 15 specific IDs listed in list.txt.
+Verified that all 30 generated title files were correctly placed in the `title/` directory and were not empty.
+Removed temporary execution scripts.
