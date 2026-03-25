@@ -1,0 +1,30 @@
+﻿gothic
+dark
+dramatic
+castle
+cliff
+lightning
+storm
+thunder
+clouds
+sky
+waterfall
+river
+bridge
+wooden bridge
+rocks
+mountains
+birds
+skull
+armor
+helmet
+shield
+fantasy
+historical
+mysterious
+eerie
+painting
+oil painting
+romanticism
+sublime
+scenery
