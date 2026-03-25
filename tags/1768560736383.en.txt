@@ -1,0 +1,30 @@
+﻿painting
+art
+landscape
+mountain
+valley
+waterfall
+stream
+river
+rocks
+cliff
+pine
+trees
+forest
+mist
+fog
+hut
+pavilion
+people
+nature
+scenic
+wilderness
+sky
+clouds
+sunset
+golden hour
+classical
+oil painting
+realism
+epic
+detailed
