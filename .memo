@@ -1,62 +1,6 @@
-# Artwork Titles Generation Memo
-
-The `list.txt` provided 15 artwork IDs. Based on the tags, critiques, and pictures associated with each ID, subjective and emotionally resonant titles were generated in both English and Japanese and saved into the `title/` directory under `<ID>.en.txt` and `<ID>.ja.txt` respectively.
-
-Generated Titles:
-
-**Batch 1**
-* `1767717019769`
-  * EN: Serenade of the Emerald Forest
-  * JA: 翠緑の森のセレナーデ
-* `1767718297276`
-  * EN: Melancholy of the Solitary Watcher
-  * JA: 孤独な観察者の憂鬱
-* `1767718304336`
-  * EN: The Golden Hour's Embrace
-  * JA: 黄金色の抱擁
-
-**Batch 2**
-* `1767719993092`
-  * EN: Whispers of the Azure Deep
-  * JA: 蒼海からの囁き
-* `1767720013465`
-  * EN: A Dance of Crimson and Shadow
-  * JA: 真紅と影の舞踏
-* `1767720017925`
-  * EN: Symphony of the Starry Canopy
-  * JA: 星屑の天蓋が奏でる交響曲
-
-**Batch 3**
-* `1767720036025`
-  * EN: Echoes of a Forgotten Dream
-  * JA: 忘れられた夢の残響
-* `1767767319674`
-  * EN: The Sunlit Path to Tomorrow
-  * JA: 明日へ続く陽だまりの道
-* `1767767324338`
-  * EN: Tears of the Morning Dew
-  * JA: 朝露が流す涙
-
-**Batch 4**
-* `1767767329566`
-  * EN: Stardust Lullaby Under the Bridge
-  * JA: 橋の下で眠る星屑の子守歌
-* `1767767334248`
-  * EN: The Carousel of Lingering Memories
-  * JA: 記憶を紡ぐ回転木馬
-* `1767767339131`
-  * EN: Lanterns Adrift in the Velvet Night
-  * JA: 星屑を映す睡蓮の夜会
-
-**Batch 5**
-* `1767767344853`
-  * EN: A Golden Spin Through the Velvet Night
-  * JA: 星降る夜の黄金の輪舞曲
-* `1767767349044`
-  * EN: Symphony of Liquid Light
-  * JA: 色彩のプリズムが踊る夜
-* `1767767373528`
-  * EN: Nostalgia Under the Carnival Lanterns
-  * JA: 追憶を照らす夜の遊園地
-
-The operations are complete. All 15 files have their `.en.txt` and `.ja.txt` versions inside the `title/` folder.
+# Task Summary
+* Generated poetic and emotional English and Japanese titles for 15 artwork IDs listed in `list.txt`.
+* The titles were generated based on context drawn from `tags/`, `critique/`, and `picture/` directories for each corresponding ID.
+* The output has been saved into `title/<ID>.en.txt` and `title/<ID>.ja.txt`.
+* Verified all 15 IDs have successfully generated title files.
+* No automated tests exist in the repository to run.
