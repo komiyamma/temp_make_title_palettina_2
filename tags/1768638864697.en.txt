@@ -1,0 +1,30 @@
+﻿landscape
+mountains
+valley
+river
+waterfall
+hut
+cabin
+person
+meditation
+misty
+foggy
+nature
+painting
+oil painting
+bridge
+boat
+scenic
+classical
+tranquil
+serene
+trees
+rocks
+cliffs
+water
+wild
+majestic
+solitude
+atmosphere
+soft light
+wilderness
