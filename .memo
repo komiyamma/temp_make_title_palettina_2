@@ -1,3 +1,2 @@
-Created English and Japanese titles for 15 artwork IDs using context from tags, critique and images, and wrote them to `title/<ID>.en.txt` and `title/<ID>.ja.txt` as per instructions.
-2025-03-25: 生成されたタイトル
-list.txtに記載の15件（1768214293096等）について、提供されたタグおよび解説を元に主観的で情緒的な英語・日本語タイトルを作成し、titleフォルダに出力した。
+list.txtに記載された15件のIDについて、対応するtags、critiqueファイル（英語および日本語）の情報を元に、主観的で感情的な英語タイトルと日本語タイトルを生成しました。
+各タイトルは `title/<ID>.en.txt` および `title/<ID>.ja.txt` としてそれぞれ保存し、すべての一時ファイルは削除してクリーンアップを完了しました。
