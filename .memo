@@ -1,3 +1,1 @@
-Generated subjective and emotional English and Japanese titles for all IDs specified in list.txt based on their respective tags and critiques.
-The titles have been saved in the `title` directory with the format `<ID>.en.txt` and `<ID>.ja.txt`.
-The execution followed the absolute rules stated in gemini_command.md, without asking questions or pausing, and ensured complete generation for all targets.
+- Generated 15 pairs of en/ja titles based on tags and critiques in list.txt
