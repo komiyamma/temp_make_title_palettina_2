@@ -1,0 +1,30 @@
+﻿painting
+portrait
+woman
+girl
+noblewoman
+dress
+veil
+flowers
+bouquet
+vase
+terrace
+balcony
+architecture
+columns
+arch
+landscape
+river
+valley
+mountains
+fruit
+still life
+table
+beauty
+elegance
+oil painting
+classical
+realism
+nature
+art
+detailed

@@ -1,0 +1,30 @@
+﻿painting
+landscape
+city
+town
+italy
+europe
+cathedral
+dome
+tower
+river
+bridge
+arch
+market
+street
+cobblestone
+woman
+jar
+people
+mountains
+valley
+sunlight
+architecture
+stone house
+history
+oil painting
+classical
+realism
+scenery
+art
+detailed
