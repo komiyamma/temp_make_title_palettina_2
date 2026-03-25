@@ -1,0 +1,30 @@
+﻿village
+town
+hillside
+cobblestone
+street
+woman
+walking
+basket
+fruit
+hat
+dress
+summer
+sunny
+mediterranean
+europe
+italy
+france
+mountains
+church tower
+stone houses
+flowers
+flower pots
+impressionism
+oil painting
+scenic
+landscape
+vacation
+nostalgic
+artistic
+colorful
