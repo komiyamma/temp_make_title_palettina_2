@@ -1,0 +1,30 @@
+﻿landscape
+mountains
+valley
+river
+waterfalls
+pavilion
+path
+bridge
+boat
+nature
+painting
+oil painting
+misty
+lush
+trees
+forest
+rocks
+scenic
+classical
+tranquil
+serene
+foliage
+water
+cliffs
+wild
+atmosphere
+soft light
+majestic
+architecture
+wilderness
