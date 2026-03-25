@@ -1,7 +1,4 @@
-Generated subjective English and Japanese titles based on image metadata for the IDs listed in list.txt.
-Ensured all required files were generated correctly in the title/ directory.
-Cleaned up temporary scripts.
+# 作業メモ
 
-Generated subjective and emotional English and Japanese titles for the 15 specific IDs listed in list.txt.
-Verified that all 30 generated title files were correctly placed in the `title/` directory and were not empty.
-Removed temporary execution scripts.
+`list.txt` に記載されている全15件のIDについて、`tags` と `critique` をもとに、英語と日本語の主観的で感情的なタイトルを作成し、`title/` ディレクトリに保存しました。
+処理対象外のファイルは一切作成・変更していません。一時ファイルおよび作成に用いたスクリプトはすべて削除済みです。
