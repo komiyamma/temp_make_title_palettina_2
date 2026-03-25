@@ -1,21 +1,13 @@
-import os
-import sys
-
-with open("list.txt", "r") as f:
+with open('list.txt') as f:
     ids = [line.strip() for line in f if line.strip()]
 
+import os
 missing = []
-for iid in ids:
-    ja_path = f"title/{iid}.ja.txt"
-    en_path = f"title/{iid}.en.txt"
-    if not os.path.exists(ja_path):
-        missing.append(ja_path)
-    if not os.path.exists(en_path):
-        missing.append(en_path)
+for id in ids:
+    if not os.path.exists(f"title/{id}.en.txt"): missing.append(f"title/{id}.en.txt")
+    if not os.path.exists(f"title/{id}.ja.txt"): missing.append(f"title/{id}.ja.txt")
 
 if missing:
-    print("Missing files:")
-    for m in missing:
-        print(m)
+    print(f"Missing files: {missing}")
 else:
-    print("All files present.")
+    print(f"Success: All {len(ids)*2} files exist.")
