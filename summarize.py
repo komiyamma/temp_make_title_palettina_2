@@ -1,38 +1,24 @@
-import os
-import sys
+import sys, os
 
-ids = [
-    "1767780598762", "1767781001238", "1767781358993", "1767782397742",
-    "1767782401655", "1767782405344", "1767784480700", "1767784485527",
-    "1767784490115", "1767784503702", "1767784505663", "1767784510123",
-    "1767784514525", "1767785186669", "1767800760296"
-]
+with open('list.txt') as f:
+    ids = [line.strip() for line in f if line.strip()]
 
-for iid in ids:
-    print(f"=== ID: {iid} ===")
+for id in ids:
+    with open(f"tags/{id}.en.txt") as f:
+        tags_en = ", ".join([l.strip() for l in f][:5])
+    with open(f"tags/{id}.ja.txt") as f:
+        tags_ja = ", ".join([l.strip() for l in f][:5])
 
-    # JA
-    ja_tags = ""
-    ja_tags_path = f"tags/{iid}.ja.txt"
-    if os.path.exists(ja_tags_path):
-        with open(ja_tags_path, 'r', encoding='utf-8') as f:
-            ja_tags = ",".join([line.strip() for line in f if line.strip()])
+    with open(f"critique/{id}.en.txt") as f:
+        critique_en = f.read()
+        desc_en = critique_en.split("2. Description")[1].split("3. Analysis")[0].strip()[:200]
+    with open(f"critique/{id}.ja.txt") as f:
+        critique_ja = f.read()
+        desc_ja = critique_ja.split("2. 記述")[1].split("3. 分析")[0].strip()[:200]
 
-    ja_crit = ""
-    ja_crit_path = f"critique/{iid}.ja.txt"
-    if os.path.exists(ja_crit_path):
-        with open(ja_crit_path, 'r', encoding='utf-8') as f:
-            lines = [line.strip() for line in f if line.strip()]
-            ja_crit = " ".join(lines[:3]) # 冒頭のみ
-
-    print(f"JA Tags: {ja_tags}")
-
-    # EN
-    en_tags = ""
-    en_tags_path = f"tags/{iid}.en.txt"
-    if os.path.exists(en_tags_path):
-        with open(en_tags_path, 'r', encoding='utf-8') as f:
-            en_tags = ",".join([line.strip() for line in f if line.strip()])
-
-    print(f"EN Tags: {en_tags}")
-    print()
+    print(f"ID: {id}")
+    print(f"  EN Tags: {tags_en}")
+    print(f"  EN Desc: {desc_en}...")
+    print(f"  JA Tags: {tags_ja}")
+    print(f"  JA Desc: {desc_ja}...")
+    print("-" * 40)

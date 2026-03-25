@@ -1,37 +1,32 @@
 import os
-import sys
-
-ids = [
-    "1767780598762", "1767781001238", "1767781358993", "1767782397742",
-    "1767782401655", "1767782405344", "1767784480700", "1767784485527",
-    "1767784490115", "1767784503702", "1767784505663", "1767784510123",
-    "1767784514525", "1767785186669", "1767800760296"
-]
 
 titles = {
-    "1767780598762": {"ja": "提灯の灯りに誘われて", "en": "Lured by the Lantern's Glow"},
-    "1767781001238": {"ja": "宵の祝祭、高鳴る鼓動", "en": "Evening Festivities, Pounding Hearts"},
-    "1767781358993": {"ja": "夕暮れの調べ", "en": "Melody of the Dusk"},
-    "1767782397742": {"ja": "煌めきの記憶", "en": "Memories of Sparkle"},
-    "1767782401655": {"ja": "幽玄なる峰と飛翔", "en": "Mystic Peaks and Flight"},
-    "1767782405344": {"ja": "水面のきらめき、翡翠の舞", "en": "Glimmering Water, Emerald Dance"},
-    "1767784480700": {"ja": "朝霧に包まれて", "en": "Embraced by Morning Mist"},
-    "1767784485527": {"ja": "黄金の空へ", "en": "To the Golden Sky"},
-    "1767784490115": {"ja": "静寂の深淵", "en": "Abyss of Silence"},
-    "1767784503702": {"ja": "蓮池に舞い降りる妖精", "en": "Fairy Descending on the Lotus Pond"},
-    "1767784505663": {"ja": "命の輝き、夏の調べ", "en": "Radiance of Life, Melody of Summer"},
-    "1767784510123": {"ja": "ノスタルジアの光", "en": "Light of Nostalgia"},
-    "1767784514525": {"ja": "秋風の便り", "en": "Tidings of the Autumn Wind"},
-    "1767785186669": {"ja": "郷愁の里", "en": "Village of Nostalgia"},
-    "1767800760296": {"ja": "木漏れ日の囁き", "en": "Whispers of Sunlight Through the Trees"}
+    "1767879764712": {"en": "Echoes of a Gilded Aviary", "ja": "黄金の鳥籠が奏でる光の交響曲"},
+    "1767879768309": {"en": "Whispers of the Sunlit Oasis", "ja": "陽光のオアシスに響く水音"},
+    "1767879772213": {"en": "Architects of the Cosmos", "ja": "宇宙を編む賢者たち"},
+    "1767879775899": {"en": "Serenade of the Golden Blossom", "ja": "黄金の花咲く静寂の調べ"},
+    "1767879787698": {"en": "The Clockwork Heavens", "ja": "星霜を刻む天球の記憶"},
+    "1767879791323": {"en": "Symphony of Iron and Steam", "ja": "鉄と蒸気が織りなす交響詩"},
+    "1767879798998": {"en": "Sparks of the Forge's Heart", "ja": "赫怒の鉄、散りゆく火花"},
+    "1767879803180": {"en": "Tears of Molten Gold", "ja": "溶鉄の涙、迸る黄金の脈動"},
+    "1767879806365": {"en": "Chronicles of the Starry Sphere", "ja": "星月夜に語られる叡智の年代記"},
+    "1767879814506": {"en": "Vessel of the Golden Twilight", "ja": "黄昏に染まる出航の夢"},
+    "1767879823358": {"en": "Cascade of Celestial Geometry", "ja": "降り注ぐ天界の幾何学"},
+    "1767879828170": {"en": "Embrace Under the Starlit Cafe", "ja": "星屑のカフェで交わす抱擁"},
+    "1767879831833": {"en": "Harbor of Turquoise Dreams", "ja": "蒼緑の港に揺蕩う夢"},
+    "1767879836575": {"en": "Golden Glow of the Grand Canal", "ja": "大運河を染める黄金の宵"},
+    "1767879841328": {"en": "Toast to the Twilight Splendor", "ja": "黄昏の祝杯、煌めく街角"}
 }
 
-os.makedirs("title", exist_ok=True)
+os.makedirs('title', exist_ok=True)
 
-for iid in ids:
-    with open(f"title/{iid}.ja.txt", "w", encoding="utf-8") as f:
-        f.write(titles[iid]["ja"])
-    with open(f"title/{iid}.en.txt", "w", encoding="utf-8") as f:
-        f.write(titles[iid]["en"])
+with open('list.txt') as f:
+    ids = [line.strip() for line in f if line.strip()]
 
-print("Titles generated.")
+for id in ids:
+    with open(f"title/{id}.en.txt", "w") as f:
+        f.write(titles[id]["en"])
+    with open(f"title/{id}.ja.txt", "w") as f:
+        f.write(titles[id]["ja"])
+
+print("Successfully generated all title files.")
