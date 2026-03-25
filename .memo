@@ -1,1 +1,4 @@
 Added english and japanese titles for artworks specified in list.txt
+- Generated 15 english and 15 japanese titles for each ID in list.txt
+- Titles are based on tags, critiques, and represent emotional and subjective qualities of the images
+- Verified title creation to match requirements exactly
