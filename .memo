@@ -1,12 +1,1 @@
-# Task Completion Memo
-
-## Task Summary
-Generated highly subjective and emotional English and Japanese title files for the 15 artwork IDs specified in `list.txt`.
-
-## Details
-- Kept strictly to the repository instructions (`gemini_command.md`). No questions asked, just executed the task.
-- Evaluated tags, critiques, and `picture/` images as truth sources.
-- Ignored standard descriptive text for titles in favor of engaging and captivating phrasing (e.g. "Whispers of the Majestic Peak", "黄金の塵に紡がれた足跡").
-- Output generated exactly 30 files in total (15 EN, 15 JA) into the `title/` directory for the listed target IDs.
-- Testing: No automated test suite exists in this repository. Validated manually via shell output.
-- Finalized for pull request and review.
+Tasks completed based on list.txt. Generating titles to title/ directory.
