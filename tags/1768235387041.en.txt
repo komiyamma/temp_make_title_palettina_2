@@ -1,0 +1,30 @@
+﻿abstract
+cityscape
+still life
+cubism
+futurism
+colorful
+buildings
+skyscrapers
+pipes
+gears
+machinery
+bottles
+wine
+glasses
+fruit
+table
+ribbons
+clouds
+industrial
+modern art
+painting
+illustration
+vibrant
+geometric
+complexity
+surrealism
+blue
+red
+yellow
+smoke
