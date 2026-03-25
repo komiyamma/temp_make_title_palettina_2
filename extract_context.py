@@ -1,31 +1,34 @@
 import os
-import glob
-from collections import defaultdict
 
-def extract_data():
-    with open('list.txt', 'r', encoding='utf-8') as f:
-        target_ids = [line.strip() for line in f if line.strip()]
+ids = []
+with open('list.txt', 'r') as f:
+    for line in f:
+        line = line.strip()
+        if line:
+            ids.append(line)
 
-    for id_ in target_ids:
-        # We need to collect tags and critique for both en and ja
-        print(f"--- ID: {id_} ---")
+with open('context_dump.txt', 'w', encoding='utf-8') as out:
+    for id_val in ids:
+        out.write(f"=== ID: {id_val} ===\n")
 
-        for lang in ['en', 'ja']:
-            tags_file = f"tags/{id_}.{lang}.txt"
-            critique_file = f"critique/{id_}.{lang}.txt"
+        en_tags_path = f"tags/{id_val}.en.txt"
+        if os.path.exists(en_tags_path):
+            with open(en_tags_path, 'r', encoding='utf-8') as f:
+                out.write(f"[EN Tags]\n{f.read()}\n")
 
-            tags_content = ""
-            critique_content = ""
-            if os.path.exists(tags_file):
-                with open(tags_file, 'r', encoding='utf-8') as f:
-                    tags_content = f.read().replace('\n', ' ')
-            if os.path.exists(critique_file):
-                with open(critique_file, 'r', encoding='utf-8') as f:
-                    # just get the first bit of critique for context
-                    critique_content = f.read()[:500].replace('\n', ' ')
+        en_critique_path = f"critique/{id_val}.en.txt"
+        if os.path.exists(en_critique_path):
+            with open(en_critique_path, 'r', encoding='utf-8') as f:
+                out.write(f"[EN Critique]\n{f.read()}\n")
 
-            print(f"[{lang.upper()}] Tags: {tags_content[:100]}...")
-            print(f"[{lang.upper()}] Critique: {critique_content[:150]}...")
+        ja_tags_path = f"tags/{id_val}.ja.txt"
+        if os.path.exists(ja_tags_path):
+            with open(ja_tags_path, 'r', encoding='utf-8') as f:
+                out.write(f"[JA Tags]\n{f.read()}\n")
 
-if __name__ == '__main__':
-    extract_data()
+        ja_critique_path = f"critique/{id_val}.ja.txt"
+        if os.path.exists(ja_critique_path):
+            with open(ja_critique_path, 'r', encoding='utf-8') as f:
+                out.write(f"[JA Critique]\n{f.read()}\n")
+
+        out.write("\n")
