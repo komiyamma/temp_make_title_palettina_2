@@ -5,3 +5,5 @@ Completed generating English and Japanese titles for all IDs listed in list.txt.
 Generated and saved English and Japanese titles for the 15 IDs listed in list.txt.
 残り15件のIDについて、英語・日本語のタイトルを生成し、titleフォルダに保存してlist.txtのすべてのIDの処理を完了しました。
 15件のIDについて、客観的な説明ではなく作者の視点に立った主観的で情緒的な英語・日本語のタイトルを生成し、titleフォルダに保存しました。
+
+list.txtに記載された15件のIDについて、客観的ではなく主観的で情緒的な英語タイトルと日本語タイトルを生成し、titleフォルダに保存してすべての処理を完遂しました。
