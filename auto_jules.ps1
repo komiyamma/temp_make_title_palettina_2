@@ -119,8 +119,8 @@ function Run-JulesForRange {
     $sessionId = if ($sessionName -match '^sessions/(.+)$') { $Matches[1] } else { $sessionName }
     Write-Host "✅ セッション作成完了: $sessionName"
 
-    # 2. 3分おきに完了チェック（最大30回）
-    $maxChecks = 30
+    # 2. 3分おきに完了チェック（最大60回）
+    $maxChecks = 60
     $checkCount = 0
     $isCompleted = $false
     $maxChecksReached = $false
