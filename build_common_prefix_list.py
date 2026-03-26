@@ -144,13 +144,13 @@ def move_old_title_files(root: Path) -> int:
     destination_dir.mkdir(parents=True, exist_ok=True)
 
     files = [p for p in title_dir.iterdir() if p.is_file()]
-    if len(files) < 100:
+    if len(files) < 50:
         return 0
 
     # Sort files by modification time descending (newest first)
     files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
 
-    files_to_move = files[60:]
+    files_to_move = files[30:]
     move_count = 0
     for file_path in files_to_move:
         dest_file_path = destination_dir / file_path.name
