@@ -49,3 +49,7 @@ Generated 30 title files (en and ja) for 15 IDs from list.txt.
 - Generated subjective and emotional English and Japanese titles based on tags and critique.
 - Successfully saved 30 title files to the title/ directory.
 - Verified all files exist and are not empty.
+
+- Processed 15 IDs from list.txt (e.g., 1770482928662).
+- Dynamically generated subjective and emotional English and Japanese titles based on the full text of their tags and critiques.
+- Successfully saved 30 title files (en and ja) to the title/ directory, verifying all files exist and are not empty.
