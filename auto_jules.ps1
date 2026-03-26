@@ -54,6 +54,17 @@ function Run-JulesForRange {
         return $false
     }
 
+    $listPath = Join-Path $PSScriptRoot "list.txt"
+    $validListEntries = @()
+    if (Test-Path $listPath) {
+        $validListEntries = Get-Content $listPath | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
+    }
+
+    if ($validListEntries.Count -eq 0) {
+        Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
+        exit 0
+    }
+
     $pendingChanges = git status --porcelain
     if ($pendingChanges) {
         Write-Host "📤 ローカル変更をコミットしてプッシュします..." -ForegroundColor Cyan
