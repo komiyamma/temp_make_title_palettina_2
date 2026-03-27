@@ -22,3 +22,5 @@ Generated English and Japanese titles for the 15 IDs listed in list.txt.
 list.txtに記載された15件のIDについて、今読み取った情報をもとに内部能力で生成した感情的で主観的な英語タイトルおよび日本語タイトルをそれぞれ title/<ID>.en.txt と title/<ID>.ja.txt に作成し、全処理を完了しました。
 
 list.txtに記載された15件のIDについて、客観的ではなく主観的で情緒的な英語タイトルと日本語タイトルを生成し、それぞれ title/<ID>.en.txt および title/<ID>.ja.txt として保存してすべての処理を完遂しました。
+
+list.txtに記載された15件のIDについて、客観的な説明ではなく作者の視点に立った主観的で情緒的な英語タイトルと日本語タイトルをそれぞれ title/<ID>.en.txt および title/<ID>.ja.txt として生成し、全処理を完遂しました。
