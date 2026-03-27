@@ -25,6 +25,12 @@ DEFAULT_REPO_TAG_DIRS = (
     Path(__file__).resolve().parent / "tags_back",
 )
 DEFAULT_TAG_DEST_DIR = Path(__file__).resolve().parent / "tags_back"
+DEFAULT_CRITIQUE_SOURCE_DIR = DEFAULT_SOURCE_DIR / "critique"
+DEFAULT_REPO_CRITIQUE_DIRS = (
+    Path(__file__).resolve().parent / "critique",
+    Path(__file__).resolve().parent / "critique_back",
+)
+DEFAULT_CRITIQUE_DEST_DIR = Path(__file__).resolve().parent / "critique_back"
 DEFAULT_TARGET_PIXELS = 160_000
 DEFAULT_MAX_WORKERS = 10
 TEXT_FILE_PATTERNS = ("*.ja.txt", "*.en.txt")
@@ -109,6 +115,13 @@ def validate_args(args: argparse.Namespace) -> None:
     for repo_tag_dir in DEFAULT_REPO_TAG_DIRS:
         if repo_tag_dir.exists() and not repo_tag_dir.is_dir():
             raise NotADirectoryError(f"Repository tag directory is not a directory: {repo_tag_dir}")
+    if not DEFAULT_CRITIQUE_SOURCE_DIR.exists():
+        raise FileNotFoundError(f"Critique source directory does not exist: {DEFAULT_CRITIQUE_SOURCE_DIR}")
+    if not DEFAULT_CRITIQUE_SOURCE_DIR.is_dir():
+        raise NotADirectoryError(f"Critique source directory is not a directory: {DEFAULT_CRITIQUE_SOURCE_DIR}")
+    for repo_critique_dir in DEFAULT_REPO_CRITIQUE_DIRS:
+        if repo_critique_dir.exists() and not repo_critique_dir.is_dir():
+            raise NotADirectoryError(f"Repository critique directory is not a directory: {repo_critique_dir}")
 
 
 def text_file_basename(path: Path) -> str | None:
@@ -160,7 +173,7 @@ def collect_tasks(
     return tasks, source_count, skipped_existing
 
 
-def collect_tag_copy_tasks(
+def collect_text_copy_tasks(
     source_dir: Path,
     dest_dir: Path,
     excluded_basenames: set[str],
@@ -316,11 +329,20 @@ def main() -> int:
         excluded_basenames=excluded_basenames,
     )
     existing_tag_basenames = collect_text_basenames(list(DEFAULT_REPO_TAG_DIRS), missing_ok=True)
-    tag_tasks, tag_source_count, tag_skipped_title_count, tag_skipped_existing_count = collect_tag_copy_tasks(
+    tag_tasks, tag_source_count, tag_skipped_title_count, tag_skipped_existing_count = collect_text_copy_tasks(
         source_dir=DEFAULT_TAG_SOURCE_DIR,
         dest_dir=DEFAULT_TAG_DEST_DIR,
         excluded_basenames=excluded_basenames,
         existing_basenames=existing_tag_basenames,
+    )
+    existing_critique_basenames = collect_text_basenames(list(DEFAULT_REPO_CRITIQUE_DIRS), missing_ok=True)
+    critique_tasks, critique_source_count, critique_skipped_title_count, critique_skipped_existing_count = (
+        collect_text_copy_tasks(
+            source_dir=DEFAULT_CRITIQUE_SOURCE_DIR,
+            dest_dir=DEFAULT_CRITIQUE_DEST_DIR,
+            excluded_basenames=excluded_basenames,
+            existing_basenames=existing_critique_basenames,
+        )
     )
 
     excluded_count = sum(
@@ -335,12 +357,16 @@ def main() -> int:
     print(f"Tag files skipped because title text exists: {tag_skipped_title_count}")
     print(f"Tag files skipped because repository tags already exist: {tag_skipped_existing_count}")
     print(f"Pending tag files after filtering: {len(tag_tasks)}")
+    print(f"Source critique text files with numeric basenames: {critique_source_count}")
+    print(f"Critique files skipped because title text exists: {critique_skipped_title_count}")
+    print(f"Critique files skipped because repository critique already exist: {critique_skipped_existing_count}")
+    print(f"Pending critique files after filtering: {len(critique_tasks)}")
 
     if args.dry_run:
         print("Dry run enabled. No files were written.")
         return 0
 
-    if not tasks and not tag_tasks:
+    if not tasks and not tag_tasks and not critique_tasks:
         print("No files to process.")
         return 0
 
@@ -368,15 +394,28 @@ def main() -> int:
     if tag_tasks:
         tag_counts = copy_text_tasks(tag_tasks)
 
+    critique_counts = {
+        "copied": 0,
+        "skipped_existing": 0,
+        "failed": 0,
+    }
+    if critique_tasks:
+        critique_counts = copy_text_tasks(critique_tasks)
+
     print(f"Worker processes used: {worker_count}")
     print(f"Resized and copied: {picture_counts['resized']}")
     print(f"Copied without resizing: {picture_counts['copied_original']}")
     print(f"Skipped because destination already exists: {picture_counts['skipped_existing'] + skipped_existing_count}")
     print(f"Tag files copied to tags_back: {tag_counts['copied']}")
     print(f"Tag files skipped because destination already exists: {tag_counts['skipped_existing'] + tag_skipped_existing_count}")
-    print(f"Failed: {picture_counts['failed'] + tag_counts['failed']}")
+    print(f"Critique files copied to critique_back: {critique_counts['copied']}")
+    print(
+        "Critique files skipped because destination already exists: "
+        f"{critique_counts['skipped_existing'] + critique_skipped_existing_count}"
+    )
+    print(f"Failed: {picture_counts['failed'] + tag_counts['failed'] + critique_counts['failed']}")
 
-    return 1 if picture_counts["failed"] or tag_counts["failed"] else 0
+    return 1 if picture_counts["failed"] or tag_counts["failed"] or critique_counts["failed"] else 0
 
 
 if __name__ == "__main__":
