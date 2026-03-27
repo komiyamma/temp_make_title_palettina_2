@@ -288,11 +288,14 @@ def optimize_copied_pngs(dest_dir: Path) -> None:
     if not png_files:
         return
 
-    subprocess.run(
-        ["oxipng", "-o", "6", "--strip", "safe", "--alpha", *[path.name for path in png_files]],
-        cwd=dest_dir,
-        check=True,
-    )
+    batch_size = 200
+    for start in range(0, len(png_files), batch_size):
+        batch = png_files[start : start + batch_size]
+        subprocess.run(
+            ["oxipng", "-o", "6", "--strip", "safe", "--alpha", *[path.name for path in batch]],
+            cwd=dest_dir,
+            check=True,
+        )
 
 
 def copy_text_tasks(tasks: list[CopyTask]) -> dict[str, int]:
@@ -384,7 +387,8 @@ def main() -> int:
             target_pixels=args.target_pixels,
             max_workers=worker_count,
         )
-        optimize_copied_pngs(args.dest_dir)
+        if picture_counts["resized"] or picture_counts["copied_original"]:
+            optimize_copied_pngs(args.dest_dir)
 
     tag_counts = {
         "copied": 0,
