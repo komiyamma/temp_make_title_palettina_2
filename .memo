@@ -9,3 +9,4 @@ Generated and saved English and Japanese titles for the 15 IDs listed in list.tx
 list.txtに記載された15件のIDについて、客観的ではなく主観的で情緒的な英語タイトルと日本語タイトルを生成し、titleフォルダに保存してすべての処理を完遂しました。
 
 list.txtに記載された15件のIDについて、情緒的・主観的な英語および日本語のタイトルをそれぞれ title/<ID>.en.txt および title/<ID>.ja.txt として生成し、全処理を完了しました。
+list.txtに記載された15件のIDについて、情緒的・主観的な英語タイトルと日本語タイトルをそれぞれ title/<ID>.en.txt および title/<ID>.ja.txt として生成し、すべての処理を完遂しました。
