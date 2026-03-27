@@ -217,7 +217,7 @@ function Run-JulesForRange {
     return $true
 }
 
-# --- メインロジック（分岐なしで20回反復） ---
+# --- メインロジック（分岐なしで100回反復） ---
 $i = 1
 for ($count = 1; $count -le 500; $count++) {
     $r = "$i-$($i + 5)"
