@@ -20,12 +20,12 @@ function Run-JulesForRange {
     if (Test-Path "G:\jules_session_list\session-limit.txt") {
         $limitNum = Get-Content "G:\jules_session_list\session-limit.txt" | Select-Object -First 1
         if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 90) {
-            Write-Host "⏳ セッション数が90以上 ($limitNum) です。45分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (45 * 60)
+            Write-Host "⏳ セッション数が90以上 ($limitNum) です。30分間待機します..." -ForegroundColor Yellow
+            Start-Sleep -Seconds (30 * 60)
         }
         if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 95) {
-            Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で45分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (45 * 60)
+            Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で30分間待機します..." -ForegroundColor Yellow
+            Start-Sleep -Seconds (30 * 60)
         }
     }
 
