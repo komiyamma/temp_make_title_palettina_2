@@ -220,6 +220,9 @@ function Run-JulesForRange {
 # --- メインロジック（分岐なしで100回反復） ---
 $i = 1
 for ($count = 1; $count -le 500; $count++) {
+
+    python copy_remain_file_from_src_repo.py
+
     $r = "$i-$($i + 5)"
     $success = Run-JulesForRange -targetRange $r
     if ($success) {
