@@ -217,16 +217,16 @@ function Run-JulesForRange {
     return $true
 }
 
-# --- メインロジック（分岐なしで100回反復） ---
+# --- メインロジック（分岐なしで6000回反復） ---
 $i = 1
-for ($count = 1; $count -le 500; $count++) {
+for ($count = 1; $count -le 12000; $count++) {
 
     python copy_remain_file_from_src_repo.py
 
-    $r = "$i-$($i + 5)"
+    $r = "$i-$($i + 1)"
     $success = Run-JulesForRange -targetRange $r
     if ($success) {
-        $i += 6
+        $i += 2
         Start-Sleep -Seconds 5
     }
     else {
