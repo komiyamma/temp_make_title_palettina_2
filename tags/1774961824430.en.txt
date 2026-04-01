@@ -1,0 +1,30 @@
+castle
+fortress
+tower
+clock
+clock tower
+flag
+hilltop
+hill
+medieval
+architecture
+stone
+wall
+trees
+greenery
+foliage
+forest
+landscape
+scenery
+nature
+sky
+clouds
+sunlight
+golden hour
+sunset
+painting
+oil painting
+impasto
+texture
+slovenia
+europe
