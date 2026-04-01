@@ -1,0 +1,30 @@
+library
+books
+bookshelf
+shelves
+old
+vintage
+antique
+ladder
+wood
+study
+stacks
+literature
+knowledge
+historical
+classical
+painterly
+oil painting
+texture
+brushstrokes
+warm light
+sunlight
+window
+interior
+archive
+brown
+golden
+mystery
+atmosphere
+detail
+academy
