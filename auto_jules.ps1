@@ -42,6 +42,19 @@ function Run-JulesForRange {
         Pop-Location
     }
 
+    if (Test-Path "G:\jules_session_list\session-limit.txt") {
+        $limitNum = Get-Content "G:\jules_session_list\session-limit.txt" | Select-Object -First 1
+        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 90) {
+            Write-Host "⏳ セッション数が90以上 ($limitNum) です。10分間待機します..." -ForegroundColor Yellow
+            Start-Sleep -Seconds (10 * 60)
+        }
+        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 95) {
+            Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で30分間待機します..." -ForegroundColor Yellow
+            Start-Sleep -Seconds (30 * 60)
+        }
+    }
+
+
     if ($targetRange -notmatch '^\s*(\d+)\s*-\s*(\d+)\s*$') {
         Write-Error "形式が違います: $targetRange"
         return $false
