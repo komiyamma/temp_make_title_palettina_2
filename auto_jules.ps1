@@ -82,11 +82,18 @@ function Run-JulesForRange {
             exit 0
         }
 
-        Write-Host "🛑 list.txt に有効な文字列がないため、30分待機して再試行します。(空判定回数: $script:EmptyListCheckCount)" -ForegroundColor Yellow
+        Write-Host "🛑 list.txt に有効な文字列がないため、60分待機して再試行します。(空判定回数: $script:EmptyListCheckCount)" -ForegroundColor Yellow
         $script:LastRunPausedForEmptyList = $true
-        Start-Sleep -Seconds (30 * 60)
-        return $false
+        Start-Sleep -Seconds (60 * 60)
     }
+    if ($validListEntries.Count -eq 0) {
+        $script:EmptyListCheckCount++
+        if ($script:EmptyListCheckCount -eq 1) {
+            Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
+            exit 0
+        }
+    }
+
 
     $pendingChanges = git status --porcelain
     if ($pendingChanges) {
@@ -254,7 +261,7 @@ for ($count = 1; $count -le 12000; $count++) {
     }
     elseif ($script:LastRunPausedForEmptyList) {
         $script:LastRunPausedForEmptyList = $false
-        Write-Host "ℹ️ 30分待機後の再試行を行います。" -ForegroundColor Yellow
+        Write-Host "ℹ️ 60分待機後の再試行を行います。" -ForegroundColor Yellow
         continue
     }
     else {
