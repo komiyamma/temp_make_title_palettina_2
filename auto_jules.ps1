@@ -13,8 +13,23 @@ $HEADERS = @{
     "Content-Type"   = "application/json"
 }
 $BASE_URL = "https://jules.googleapis.com/v1alpha"
-$script:EmptyListCheckCount = 0
-$script:LastRunPausedForEmptyList = $false
+$script:HasProcessedAtLeastOneRange = $false
+
+function Test-HasValidListEntry {
+    param([string]$Path = "list.txt")
+
+    if (-not (Test-Path $Path)) {
+        return $false
+    }
+
+    foreach ($line in Get-Content -Path $Path) {
+        if (-not [string]::IsNullOrWhiteSpace($line)) {
+            return $true
+        }
+    }
+
+    return $false
+}
 
 function Run-JulesForRange {
     param([string]$targetRange)
@@ -69,27 +84,16 @@ function Run-JulesForRange {
         return $false
     }
 
-    $listPath = Join-Path $PSScriptRoot "list.txt"
-    $validListEntries = @()
-    if (Test-Path $listPath) {
-        $validListEntries = Get-Content $listPath | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }
-    }
-
-    if ($validListEntries.Count -eq 0) {
-        $script:EmptyListCheckCount++
-        if ($script:EmptyListCheckCount -eq 1) {
+    if (-not (Test-HasValidListEntry -Path "list.txt")) {
+        if (-not $script:HasProcessedAtLeastOneRange) {
             Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
             exit 0
         }
 
-        Write-Host "🛑 list.txt に有効な文字列がないため、60分待機して再試行します。(空判定回数: $script:EmptyListCheckCount)" -ForegroundColor Yellow
-        $script:LastRunPausedForEmptyList = $true
+        Write-Host "🛑 これまでに処理済みのため、list.txt が空になった可能性があります。60分待機して再確認します。" -ForegroundColor Yellow
         Start-Sleep -Seconds (60 * 60)
-    }
-    if ($validListEntries.Count -eq 0) {
-        $script:EmptyListCheckCount++
-        if ($script:EmptyListCheckCount -eq 1) {
-            Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
+        if (-not (Test-HasValidListEntry -Path "list.txt")) {
+            Write-Host "🛑 60分待機後も list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
             exit 0
         }
     }
@@ -256,13 +260,9 @@ for ($count = 1; $count -le 12000; $count++) {
     $r = "$i-$($i + 1)"
     $success = Run-JulesForRange -targetRange $r
     if ($success) {
+        $script:HasProcessedAtLeastOneRange = $true
         $i += 2
         Start-Sleep -Seconds 5
-    }
-    elseif ($script:LastRunPausedForEmptyList) {
-        $script:LastRunPausedForEmptyList = $false
-        Write-Host "ℹ️ 60分待機後の再試行を行います。" -ForegroundColor Yellow
-        continue
     }
     else {
         Write-Host "⚠️ $r の実行に失敗しました。5秒後に再試行します..." -ForegroundColor Yellow
