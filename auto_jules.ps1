@@ -13,6 +13,8 @@ $HEADERS = @{
     "Content-Type"   = "application/json"
 }
 $BASE_URL = "https://jules.googleapis.com/v1alpha"
+$script:EmptyListCheckCount = 0
+$script:LastRunPausedForEmptyList = $false
 
 function Run-JulesForRange {
     param([string]$targetRange)
@@ -74,8 +76,16 @@ function Run-JulesForRange {
     }
 
     if ($validListEntries.Count -eq 0) {
-        Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
-        exit 0
+        $script:EmptyListCheckCount++
+        if ($script:EmptyListCheckCount -eq 1) {
+            Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
+            exit 0
+        }
+
+        Write-Host "🛑 list.txt に有効な文字列がないため、30分待機して再試行します。(空判定回数: $script:EmptyListCheckCount)" -ForegroundColor Yellow
+        $script:LastRunPausedForEmptyList = $true
+        Start-Sleep -Seconds (30 * 60)
+        return $false
     }
 
     $pendingChanges = git status --porcelain
@@ -241,6 +251,11 @@ for ($count = 1; $count -le 12000; $count++) {
     if ($success) {
         $i += 2
         Start-Sleep -Seconds 5
+    }
+    elseif ($script:LastRunPausedForEmptyList) {
+        $script:LastRunPausedForEmptyList = $false
+        Write-Host "ℹ️ 30分待機後の再試行を行います。" -ForegroundColor Yellow
+        continue
     }
     else {
         Write-Host "⚠️ $r の実行に失敗しました。5秒後に再試行します..." -ForegroundColor Yellow
