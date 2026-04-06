@@ -144,15 +144,26 @@ def move_old_title_files(root: Path) -> int:
     destination_dir.mkdir(parents=True, exist_ok=True)
 
     files = [p for p in title_dir.iterdir() if p.is_file()]
-    if len(files) < 50:
+    if not files:
         return 0
 
     # Sort files by modification time descending (newest first)
     files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
 
-    files_to_move = files[30:]
+    latest_files = files[:30]
+    older_files = files[30:]
+
+    copy_count = 0
+    for file_path in latest_files:
+        dest_file_path = destination_dir / file_path.name
+        try:
+            shutil.copy2(file_path, dest_file_path)
+            copy_count += 1
+        except Exception as e:
+            print(f"Failed to copy {file_path}: {e}")
+
     move_count = 0
-    for file_path in files_to_move:
+    for file_path in older_files:
         dest_file_path = destination_dir / file_path.name
         try:
             shutil.move(str(file_path), str(dest_file_path))
@@ -160,10 +171,13 @@ def move_old_title_files(root: Path) -> int:
         except Exception as e:
             print(f"Failed to move {file_path}: {e}")
 
-    if move_count > 0:
-        print(f"Moved {move_count} old title files to {destination_dir}")
+    total_count = copy_count + move_count
+    if total_count > 0:
+        print(
+            f"Copied {copy_count} latest title files and moved {move_count} old title files to {destination_dir}"
+        )
 
-    return move_count
+    return total_count
 
 
 def main() -> None:
