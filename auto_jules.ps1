@@ -13,7 +13,21 @@ $HEADERS = @{
     "Content-Type"   = "application/json"
 }
 $BASE_URL = "https://jules.googleapis.com/v1alpha"
+$script:StopRequested = $false
 $script:HasProcessedAtLeastOneRange = $false
+$script:AutoJulesMutex = $null
+$script:AutoJulesMutexAcquired = $false
+
+function Request-ScriptStop {
+    param([string]$Message)
+
+    if ($Message) {
+        Write-Host $Message -ForegroundColor Yellow
+    }
+
+    $script:StopRequested = $true
+    return $false
+}
 
 function Test-HasValidListEntry {
     param([string]$Path = "list.txt")
@@ -86,15 +100,13 @@ function Run-JulesForRange {
 
     if (-not (Test-HasValidListEntry -Path "list.txt")) {
         if (-not $script:HasProcessedAtLeastOneRange) {
-            Write-Host "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
-            exit 0
+            return (Request-ScriptStop "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。")
         }
 
         Write-Host "🛑 これまでに処理済みのため、list.txt が空になった可能性があります。60分待機して再確認します。" -ForegroundColor Yellow
         Start-Sleep -Seconds (60 * 60)
         if (-not (Test-HasValidListEntry -Path "list.txt")) {
-            Write-Host "🛑 60分待機後も list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。" -ForegroundColor Yellow
-            exit 0
+            return (Request-ScriptStop "🛑 60分待機後も list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。")
         }
     }
 
@@ -251,21 +263,66 @@ function Run-JulesForRange {
     return $true
 }
 
-# --- メインロジック（分岐なしで6000回反復） ---
-$i = 1
-for ($count = 1; $count -le 12000; $count++) {
+$mutexName = "Global\temp_make_title_palettina_auto_jules"
+$script:AutoJulesMutex = [System.Threading.Mutex]::new($false, $mutexName)
 
-    python copy_remain_file_from_src_repo.py
-
-    $r = "$i-$($i + 1)"
-    $success = Run-JulesForRange -targetRange $r
-    if ($success) {
-        $script:HasProcessedAtLeastOneRange = $true
-        $i += 2
-        Start-Sleep -Seconds 5
+try {
+    try {
+        $script:AutoJulesMutexAcquired = $script:AutoJulesMutex.WaitOne(0)
     }
-    else {
-        Write-Host "⚠️ $r の実行に失敗しました。5秒後に再試行します..." -ForegroundColor Yellow
-        Start-Sleep -Seconds 5
+    catch [System.Threading.AbandonedMutexException] {
+        $script:AutoJulesMutexAcquired = $true
+        Write-Warning "⚠️ 前回の auto_jules.ps1 が異常終了していたため、放棄された Mutex を引き継ぎます。"
+    }
+
+    if (-not $script:AutoJulesMutexAcquired) {
+        Write-Host "⚠️ すでに auto_jules.ps1 が実行中です。二重起動を防ぐため終了します。" -ForegroundColor Yellow
+        return
+    }
+
+    # --- メインロジック（分岐なしで6000回反復） ---
+    $i = 1
+    for ($count = 1; $count -le 12000; $count++) {
+        if ($script:StopRequested) {
+            break
+        }
+
+        python copy_remain_file_from_src_repo.py
+
+        if ($script:StopRequested) {
+            break
+        }
+
+        $r = "$i-$($i + 1)"
+        $success = Run-JulesForRange -targetRange $r
+        if ($script:StopRequested) {
+            break
+        }
+
+        if ($success) {
+            $script:HasProcessedAtLeastOneRange = $true
+            $i += 2
+            Start-Sleep -Seconds 5
+        }
+        else {
+            Write-Host "⚠️ $r の実行に失敗しました。5秒後に再試行します..." -ForegroundColor Yellow
+            Start-Sleep -Seconds 5
+        }
+    }
+}
+finally {
+    if ($script:AutoJulesMutex -and $script:AutoJulesMutexAcquired) {
+        try {
+            $script:AutoJulesMutex.ReleaseMutex() | Out-Null
+        }
+        catch {
+            Write-Warning "⚠️ Mutex の解放に失敗しました: $($_.Exception.Message)"
+        }
+        finally {
+            $script:AutoJulesMutex.Dispose()
+        }
+    }
+    elseif ($script:AutoJulesMutex) {
+        $script:AutoJulesMutex.Dispose()
     }
 }
