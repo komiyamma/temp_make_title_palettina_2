@@ -45,20 +45,46 @@ function Test-HasValidListEntry {
     return $false
 }
 
+function Wait-ForSessionLimitThrottle {
+    param([string]$Path = "G:\jules_session_list\session-limit.txt")
+
+    if (-not (Test-Path $Path)) {
+        return
+    }
+
+    $limitNum = Get-Content $Path | Select-Object -First 1
+    if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 90) {
+        Write-Host "⏳ セッション数が90以上 ($limitNum) です。10分間待機します..." -ForegroundColor Yellow
+        Start-Sleep -Seconds (10 * 60)
+    }
+    if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 95) {
+        Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で30分間待機します..." -ForegroundColor Yellow
+        Start-Sleep -Seconds (30 * 60)
+    }
+}
+
+function Invoke-CommonPrefixListRefresh {
+    Write-Host "🛠️ list.txt の再生成を実行します..." -ForegroundColor Cyan
+
+    python copy_remain_file_from_src_repo.py
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ copy_remain_file_from_src_repo.py の実行に失敗しました。"
+        return $false
+    }
+
+    python build_common_prefix_list.py
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "❌ build_common_prefix_list.py の実行に失敗しました。"
+        return $false
+    }
+
+    return $true
+}
+
 function Run-JulesForRange {
     param([string]$targetRange)
 
-    if (Test-Path "G:\jules_session_list\session-limit.txt") {
-        $limitNum = Get-Content "G:\jules_session_list\session-limit.txt" | Select-Object -First 1
-        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 90) {
-            Write-Host "⏳ セッション数が90以上 ($limitNum) です。10分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (10 * 60)
-        }
-        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 95) {
-            Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で30分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (30 * 60)
-        }
-    }
+    Wait-ForSessionLimitThrottle
 
     # セッション数制限確認ツールの実行
     Push-Location "G:\jules_session_list"
@@ -73,17 +99,7 @@ function Run-JulesForRange {
         Pop-Location
     }
 
-    if (Test-Path "G:\jules_session_list\session-limit.txt") {
-        $limitNum = Get-Content "G:\jules_session_list\session-limit.txt" | Select-Object -First 1
-        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 90) {
-            Write-Host "⏳ セッション数が90以上 ($limitNum) です。10分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (10 * 60)
-        }
-        if ($limitNum -match '^\d+$' -and [int]$limitNum -ge 95) {
-            Write-Host "⏳ セッション数が95以上 ($limitNum) です。追加で30分間待機します..." -ForegroundColor Yellow
-            Start-Sleep -Seconds (30 * 60)
-        }
-    }
+    Wait-ForSessionLimitThrottle
 
 
     if ($targetRange -notmatch '^\s*(\d+)\s*-\s*(\d+)\s*$') {
@@ -91,10 +107,7 @@ function Run-JulesForRange {
         return $false
     }
 
-    Write-Host "🛠️ build_common_prefix_list.py を実行します..." -ForegroundColor Cyan
-    python build_common_prefix_list.py
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "❌ build_common_prefix_list.py の実行に失敗しました。"
+    if (-not (Invoke-CommonPrefixListRefresh)) {
         return $false
     }
 
@@ -105,9 +118,10 @@ function Run-JulesForRange {
 
         Write-Host "🛑 これまでに処理済みのため、list.txt が空になった可能性があります。60分待機して再確認します。" -ForegroundColor Yellow
         Start-Sleep -Seconds (60 * 60)
-        python copy_remain_file_from_src_repo.py
+        if (-not (Invoke-CommonPrefixListRefresh)) {
+            return $false
+        }
         Start-Sleep -Seconds (1 * 60)
-	    python build_common_prefix_list.py
         if (-not (Test-HasValidListEntry -Path "list.txt")) {
             return (Request-ScriptStop "🛑 60分待機後も list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。")
         }
