@@ -1,6 +1,7 @@
 conductor
 baton
 hands
+fingers
 conducting
 music
 classical music
@@ -27,4 +28,3 @@ suit
 tuxedo
 cuffs
 button
-direction
