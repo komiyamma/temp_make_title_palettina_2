@@ -1,10 +1,7 @@
-inkwell
-pen
-fountain pen
-nib
-ink
-writing
+letters
+handwriting
 old
+stack
 antique
 vintage
 watercolor
@@ -15,16 +12,19 @@ illustration
 sketch
 parchment
 paper
+manuscript
 wax seal
 seal
-red
+wheat
+dried flowers
 brown
 sepia
-still life
-textured
-canvas
+warm
+nostalgia
+romantic
 history
 literature
 traditional
-nostalgia
-romantic
+textured
+canvas
+shabby chic
