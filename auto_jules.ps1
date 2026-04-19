@@ -116,8 +116,8 @@ function Run-JulesForRange {
             return (Request-ScriptStop "🛑 list.txt に有効な文字列がないため、auto_jules.ps1 を終了します。")
         }
 
-        Write-Host "🛑 これまでに処理済みのため、list.txt が空になった可能性があります。60分待機して再確認します。" -ForegroundColor Yellow
-        Start-Sleep -Seconds (60 * 60)
+        Write-Host "🛑 これまでに処理済みのため、list.txt が空になった可能性があります。120分待機して再確認します。" -ForegroundColor Yellow
+        Start-Sleep -Seconds (120 * 60)
         if (-not (Invoke-CommonPrefixListRefresh)) {
             return $false
         }
