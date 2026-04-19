@@ -1,0 +1,30 @@
+painting
+landscape
+cityscape
+architecture
+italy
+medieval
+renaissance
+cathedral
+dome
+tower
+clock tower
+sunset
+golden hour
+warm
+archway
+balcony
+flowers
+pots
+red
+brick
+stone
+cobblestone
+stairs
+street
+historic
+town
+scenery
+travel
+tourism
+art
