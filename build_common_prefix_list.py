@@ -15,7 +15,7 @@ MOVE_DIRECTORY_PAIRS = (
     ("picture_back", "picture"),
 )
 OUTPUT_FILE_NAME = "list.txt"
-MAX_RESULTS = 15
+MAX_RESULTS = 10
 
 
 def extract_base_name(path: Path) -> str:
